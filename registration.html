@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Registration</title>
+    <link rel="stylesheet" href="MMLOG.css"> 
+    <script src="MMLOG.js" defer></script> 
+</head>
+<body>
+    <div class="container">
+        <center>
+            <header>
+                <h1>Member Registration</h1>
+            </header>
+        </center>
+        <br>
+        <form id="registrationForm">
+            <label for="firstName">First name:</label>
+            <input type="text" id="firstName" name="firstName" required><br>
+            <label for="lastName">Last name:</label>
+            <input type="text" id="lastName" name="lastName" required><br>
+            <label for="NickName">Nickname:</label>
+            <input type="text" id="Nickname" name="Nickname" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="18" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" pattern="^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{6,}$" required><br>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+            <button type="submit">Register Now</button>
+            <button type="button" onclick="clearForm()">Clear Form</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            localStorage.setItem('isRegistered', 'true');
+            alert('Registration successful!');
+            window.location.href = 'MMLOG.html';  // Redirect to homepage
+        });
+
+        function clearForm() {
+            document.getElementById('registrationForm').reset();
+        }
+    </script>
+</body>
+</html>
